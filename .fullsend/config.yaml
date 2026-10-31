@@ -3,6 +3,11 @@
 #
 # This file configures fullsend for per-repo installation mode.
 # See https://fullsend.sh/docs/guides/infrastructure/layered-config-reference
+agents:
+    - name: triage
+      trigger: "false"
+    - name: retro
+      trigger: event.transition.kind == "comment_added" && has(event.transition.comment.command) && event.transition.comment.command == "/fs-retro" && event.actor.kind == "human"
 mint_url: https://bt-5bb397d0-agents-bt-mint.fullsend-ai.workers.dev
 inference:
     project: it-gcp-konflux-dev-fullsend
